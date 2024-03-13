@@ -11,7 +11,6 @@ except ImportError:
     )
 from django.db.models import Avg, Count, Sum, Max, Min
 from openpyxl.workbook import Workbook
-from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
 import csv
@@ -86,7 +85,7 @@ class DataExportMixin(object):
         """ Take a workbook and return a xlsx file response """
         title = generate_filename(title, '.xlsx')
         myfile = BytesIO()
-        myfile.write(save_virtual_workbook(wb))
+        wb.save(myfile)
         response = HttpResponse(
             myfile.getvalue(),
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')

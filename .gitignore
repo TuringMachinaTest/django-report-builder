@@ -5,7 +5,6 @@
 *.egg-info
 
 build
-report_builder/static/report_builder
 eggs
 parts
 bin
